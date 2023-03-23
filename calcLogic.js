@@ -1,25 +1,24 @@
 try {
-
     var button = document.querySelectorAll(".buttonReg");
     var display = document.querySelector("#displayWindow");
     var operatorButton = document.querySelectorAll(".btnOperator");
     var msGlobalMemory = 0;
-
-    for (element of button) {
-        element.addEventListener('click', (e) => {                 // added event listener to all buttons at once 
+    for (var _i = 0, _a = button; _i < _a.length; _i++) {
+        var element = _a[_i];
+        element.addEventListener('click', function (e) {
             button = e.target.value;
             display.value += button;
-        })
+        });
     }
-
-    for (item of operatorButton) {
+    for (var _b = 0, _c = operatorButton; _b < _c.length; _b++) {
+        var item = _c[_b];
         // console.log("Inside loop1");
-        item.addEventListener('click', (e) => {                 // added event listener to all buttons at once 
+        item.addEventListener('click', function (e) {
             // console.log("Inside click event");  
-            let checkOperators = ["%", "+", "-", "/", "*", ",", ",","eof"];
-            let TempDisplayString = Array.from(display.value);
-            let flag = 0;
-            for (i = 0; checkOperators[i] != "eof"; i++) {
+            var checkOperators = ["%", "+", "-", "/", "*", ",", ",", "eof"];
+            var TempDisplayString = Array(display.value);
+            var flag = 0;
+            for (var i = 0; checkOperators[i] != "eof"; i++) {
                 // console.log("Inside loop2");
                 if (TempDisplayString[TempDisplayString.length - 1] != checkOperators[i]) {
                     flag = 1;
@@ -38,37 +37,31 @@ try {
             }
             else {
                 //  console.log("in flag else");
-                operatorButton = e.target.value;
-                TempDisplayString[TempDisplayString.length - 1] = operatorButton;
+                var operatorButtoni = e.target.value;
+                TempDisplayString[TempDisplayString.length - 1] = operatorButtoni;
                 display.value = TempDisplayString.join("");
             }
-
-        })
+        });
     }
-
     function degButtonClicked() {
-        display.value = (display.value * 180 / Math.PI).toFixed(10);
+        display.value = (Number(display.value) * 180 / Math.PI).toFixed(10);
     }
-
-    function feButtonClicked(){
-        TempDisplayString = parseInt(display.value);
+    function feButtonClicked() {
+        var TempDisplayString = parseInt(display.value);
         display.value = String(TempDisplayString.toExponential());
     }
-
     function mClearButtonClicked() {
-        msGlobalMemory = "";
+        msGlobalMemory = 0;
         document.getElementById("memoryElement").innerHTML = 'Memory: cleared';
         document.getElementById("mcFunction").style.color = "grey";
         document.getElementById("mrFunction").style.color = "grey";
     }
-
     function mRecallButtonClicked() {
-        display.value = msGlobalMemory;
+        display.value = String(msGlobalMemory);
         document.getElementById("memoryElement").innerHTML = 'Memory:' + msGlobalMemory;
     }
-
     function mPlusButtonClicked() {
-        if (isNaN(display.value)) {
+        if (isNaN(Number(display.value))) {
             display.value = "Syntax error";
         }
         else {
@@ -78,95 +71,82 @@ try {
             document.getElementById("mrFunction").style.color = "black";
         }
     }
-
     function mMinusButtonClicked() {
-        if (isNaN(display.value)) {
+        if (isNaN(Number(display.value))) {
             display.value = "Syntax error";
         }
         else {
-            msGlobalMemory -= display.value;
+            msGlobalMemory = msGlobalMemory - Number(display.value);
             document.getElementById("memoryElement").innerHTML = 'Memory:' + msGlobalMemory;
             document.getElementById("mcFunction").style.color = "black";
             document.getElementById("mrFunction").style.color = "black";
         }
     }
-
     function msButtonClicked() {
-
-        if (isNaN(display.value) || display.value == "") {
+        if (isNaN(Number(display.value)) || display.value == "") {
             display.value = "Syntax error";
         }
         else {
-            msGlobalMemory = display.value;
+            msGlobalMemory = Number(display.value);
             document.getElementById("memoryElement").innerHTML = 'Memory:' + msGlobalMemory;
             document.getElementById("mcFunction").style.color = "black";
             document.getElementById("mrFunction").style.color = "black";
         }
-    } 
-    
-    
+    }
     // Trignometry 
-
     function sinButtonClicked() {
-        let TempDisplayString = Math.sin(display.value * Math.PI / 180);
+        var TempDisplayString = Math.sin(Number(display.value) * Math.PI / 180);
         display.value = TempDisplayString.toFixed(10);
-        if (isNaN(display.value)) {
+        if (isNaN(Number(display.value))) {
             display.value = "Syntax error";
         }
     }
     function cosButtonClicked() {
-        let TempDisplayString = Math.cos(display.value * Math.PI / 180);
+        var TempDisplayString = Math.cos(Number(display.value) * Math.PI / 180);
         display.value = TempDisplayString.toFixed(10);
-        if (isNaN(display.value)) {
+        if (isNaN(Number(display.value))) {
             display.value = "Syntax error";
         }
     }
     function tanButtonClicked() {
-        let TempDisplayString = Math.tan(display.value * Math.PI / 180);
+        var TempDisplayString = Math.tan(Number(display.value) * Math.PI / 180);
         display.value = TempDisplayString.toFixed(10);
-        if (isNaN(display.value)) {
+        if (isNaN(Number(display.value))) {
             display.value = "Syntax error";
         }
     }
-
     // End of trignometry 
-
     // functions menu
     function ceilButtonClicked() {
-        display.value = Math.ceil(display.value);
-        if (isNaN(display.value)) {
+        display.value = Math.ceil(Number(display.value)).toString();
+        if (isNaN(Number(display.value))) {
             display.value = "Syntax error";
         }
     }
     function floorButtonClicked() {
-        display.value = Math.floor(display.value);
-        if (isNaN(display.value)) {
+        display.value = Math.floor(Number(display.value)).toString();
+        if (isNaN(Number(display.value))) {
             display.value = "Syntax error";
         }
     }
     // end of functions menu
-
     function twondButtonClicked() {
-        display.value = Math.pow(2,display.value);
+        display.value = Math.pow(2, Number(display.value)).toString();
     }
-
     function piButtonClicked() {
-
         if (display.value == null || display.value == "") {
             display.value = (Math.PI).toFixed(10);
         }
         else {
-            display.value *= (Math.PI).toFixed(10);
+            display.value = (Number(display.value) * Number((Math.PI).toFixed(10))).toString();
         }
-        if (isNaN(display.value)) {
+        if (isNaN(Number(display.value))) {
             display.value = "Syntax error";
         }
     }
-
     function clearFunction() {
         display.value = "";
     }
-
     function backSpaceFunction() {
         display.value = display.value.slice(0, display.value.length - 1);
         // let b = Array.from(display.value);       //converting string to array  
@@ -181,69 +161,58 @@ try {
         // else{
         //     display.value = string(b);
         // }
-
         // let b = display.value.substring(0, display.value.length-1);    //working
         // display.value = b;   
     }
-
     function xSquareButtonClicked() {
-        display.value = Math.pow(display.value, 2);
-        if (isNaN(display.value)) {
+        display.value = Math.pow(Number(display.value), 2).toString();
+        if (isNaN(Number(display.value))) {
             display.value = "Syntax error";
         }
     }
-
     function oneDividedbyClicked() {
-        display.value = 1 / display.value.toFixed(10);
-        if (isNaN(display.value)) {
+        display.value = (1 / Number(display.value)).toFixed(5);
+        if (isNaN(Number(display.value))) {
             display.value = "Syntax error";
         }
     }
-
     function modulusButtonClicked() {
-        display.value = Math.abs(display.value);
-        if (isNaN(display.value)) {
+        display.value = Math.abs(Number(display.value)).toString();
+        if (isNaN(Number(display.value))) {
             display.value = "Syntax error";
         }
     }
-
-    function expButtonClicked(){
-        display.value = Math.exp(display.value).toFixed(10);
-        if (isNaN(display.value)) {
+    function expButtonClicked() {
+        display.value = Math.exp(Number(display.value)).toFixed(10);
+        if (isNaN(Number(display.value))) {
             display.value = "Syntax error";
         }
     }
-    
     function squarerootButtonClicked() {
-        display.value = Math.sqrt(display.value);
-        if (isNaN(display.value)) {
+        display.value = Math.sqrt(Number(display.value)).toString();
+        if (isNaN(Number(display.value))) {
             display.value = "Syntax error";
         }
     }
-
     function factorialButtonClicked() {
-        TempDisplayString = display.value;
-        let sum = 0;
-        for (sum = 1; TempDisplayString != 1; TempDisplayString--) {
+        var TempDisplayString = Number(display.value);
+        var sum = 0;
+        for (sum = 1; TempDisplayString != 1; (TempDisplayString--)) {
             sum *= TempDisplayString;
         }
-        display.value = sum;
-
-        if (isNaN(display.value)) {
+        display.value = sum.toString();
+        if (isNaN(Number(display.value))) {
             display.value = "Syntax error";
         }
     }
-    
     function tenXButtonClicked() {
         // let TempDisplayString,answer;
-        display.value = Math.pow(10, display.value);
-        if (isNaN(display.value)) {
+        display.value = Math.pow(10, Number(display.value)).toString();
+        if (isNaN(Number(display.value))) {
             display.value = "Syntax error";
             //console.log("inside if");
-
         }
         // TempDisplayString = display.value;
-
         // for( answer = 10 ; TempDisplayString != 1;TempDisplayString--)
         // {
         //     console.log(TempDisplayString);
@@ -253,39 +222,31 @@ try {
         // }
         // display.value = answer;
     }
-    
-    function logButtonClicked(){
-        display.value = Math.log10(display.value).toFixed(10);
+    function logButtonClicked() {
+        display.value = Math.log10(parseInt(display.value)).toFixed(10);
     }
-
     function lnButtonClicked() {
-        display.value = Math.log(display.value).toFixed(10);
-        Math.log10
-        if (isNaN(display.value)) {
+        display.value = Math.log(Number(display.value)).toFixed(10);
+        if (isNaN(Number(display.value))) {
             display.value = "Syntax error";
             //console.log("inside if");   
         }
-
     }
-
     function plusMinusClicked() {
-        display.value = display.value * -1;
-        if (isNaN(display.value)) {
+        display.value = Number(Number(display.value) * -1).toString();
+        if (isNaN(Number(display.value))) {
             display.value = "Syntax error";
         }
     }
-    
     function equalFunction() {
-        let x = eval(display.value);
+        var x = eval(display.value);
         display.value = x;
-        if (isNaN(display.value)) {
+        if (isNaN(Number(display.value))) {
             display.value = "Syntax error";
         }
     }
 }
-
 catch (err) {
     console.log(err);
-    displayWindow.value = "Syntax Error";
-
+    document.querySelector("#displayWindow").value = "Syntax Error";
 }
