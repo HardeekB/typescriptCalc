@@ -1,24 +1,23 @@
+// "use strict";
 try {
     var button = document.querySelectorAll(".buttonReg");
     var display = document.querySelector("#displayWindow");
     var operatorButton = document.querySelectorAll(".btnOperator");
     var msGlobalMemory = 0;
-    for (var _i = 0, _a = button; _i < _a.length; _i++) {
-        var element = _a[_i];
-        element.addEventListener('click', function (e) {
+    for (let element of button) {
+        element.addEventListener('click', (e) => {
             button = e.target.value;
             display.value += button;
         });
     }
-    for (var _b = 0, _c = operatorButton; _b < _c.length; _b++) {
-        var item = _c[_b];
+    for (let item of operatorButton) {
         // console.log("Inside loop1");
-        item.addEventListener('click', function (e) {
+        item.addEventListener('click', (e) => {
             // console.log("Inside click event");  
-            var checkOperators = ["%", "+", "-", "/", "*", ",", ",", "eof"];
-            var TempDisplayString = Array(display.value);
-            var flag = 0;
-            for (var i = 0; checkOperators[i] != "eof"; i++) {
+            let checkOperators = ["%", "+", "-", "/", "*", ",", ",", "eof"];
+            let TempDisplayString = Array(display.value);
+            let flag = 0;
+            for (let i = 0; checkOperators[i] != "eof"; i++) {
                 // console.log("Inside loop2");
                 if (TempDisplayString[TempDisplayString.length - 1] != checkOperators[i]) {
                     flag = 1;
@@ -37,7 +36,7 @@ try {
             }
             else {
                 //  console.log("in flag else");
-                var operatorButtoni = e.target.value;
+                let operatorButtoni = e.target.value;
                 TempDisplayString[TempDisplayString.length - 1] = operatorButtoni;
                 display.value = TempDisplayString.join("");
             }
@@ -47,7 +46,7 @@ try {
         display.value = (Number(display.value) * 180 / Math.PI).toFixed(10);
     }
     function feButtonClicked() {
-        var TempDisplayString = parseInt(display.value);
+        let TempDisplayString = parseInt(display.value);
         display.value = String(TempDisplayString.toExponential());
     }
     function mClearButtonClicked() {
@@ -95,21 +94,21 @@ try {
     }
     // Trignometry 
     function sinButtonClicked() {
-        var TempDisplayString = Math.sin(Number(display.value) * Math.PI / 180);
+        let TempDisplayString = Math.sin(Number(display.value) * Math.PI / 180);
         display.value = TempDisplayString.toFixed(10);
         if (isNaN(Number(display.value))) {
             display.value = "Syntax error";
         }
     }
     function cosButtonClicked() {
-        var TempDisplayString = Math.cos(Number(display.value) * Math.PI / 180);
+        let TempDisplayString = Math.cos(Number(display.value) * Math.PI / 180);
         display.value = TempDisplayString.toFixed(10);
         if (isNaN(Number(display.value))) {
             display.value = "Syntax error";
         }
     }
     function tanButtonClicked() {
-        var TempDisplayString = Math.tan(Number(display.value) * Math.PI / 180);
+        let TempDisplayString = Math.tan(Number(display.value) * Math.PI / 180);
         display.value = TempDisplayString.toFixed(10);
         if (isNaN(Number(display.value))) {
             display.value = "Syntax error";
@@ -195,8 +194,8 @@ try {
         }
     }
     function factorialButtonClicked() {
-        var TempDisplayString = Number(display.value);
-        var sum = 0;
+        let TempDisplayString = Number(display.value);
+        let sum = 0;
         for (sum = 1; TempDisplayString != 1; (TempDisplayString--)) {
             sum *= TempDisplayString;
         }
@@ -239,7 +238,7 @@ try {
         }
     }
     function equalFunction() {
-        var x = eval(display.value);
+        let x = eval(display.value);
         display.value = x;
         if (isNaN(Number(display.value))) {
             display.value = "Syntax error";

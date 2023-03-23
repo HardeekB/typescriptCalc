@@ -275,7 +275,7 @@ try {
         }
     }
     
-    function equalFunction() {
+    function equalFunction() : void {
         let x = eval((<HTMLInputElement>display).value);
         (<HTMLInputElement>display).value = x;
         if (isNaN(Number((<HTMLInputElement>display).value))) {
