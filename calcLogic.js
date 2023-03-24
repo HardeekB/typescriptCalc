@@ -1,4 +1,4 @@
-// "use strict";
+
 try {
     var button = document.querySelectorAll(".buttonReg");
     var display = document.querySelector("#displayWindow");

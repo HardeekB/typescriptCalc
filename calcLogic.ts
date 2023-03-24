@@ -17,7 +17,7 @@ try {
         // console.log("Inside loop1");
         item.addEventListener('click', (e : any) => {                 // added event listener to all buttons at once 
             // console.log("Inside click event");  
-            let checkOperators = ["%", "+", "-", "/", "*", ",", ",","eof"];
+            let checkOperators : string[] = ["%", "+", "-", "/", "*", ",", ",","eof"];
             let TempDisplayString = Array((<HTMLInputElement>display).value);
             let flag = 0;
             for (let i = 0; checkOperators[i] != "eof"; i++) {
